@@ -1,0 +1,24 @@
+{
+    "manifest_version": 3,
+    "name": "MuteAd",
+    "version": "1.0",
+    "permissions": [
+        "activeTab",
+        "tabs"
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content.js"]
+      }
+    ],
+    "icons": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
+  }
+  
