@@ -1,4 +1,4 @@
-# Mute Ad Chrome Extension For Jio Cinema
+# Mute Ad Chrome Extension For Jio Cinema & HotStar
 
 MuteAd is a Chrome extension that allows users to automatically mute the volume of a tab when ad shows up during the match, and then restore the volume after the ad is over.
 
@@ -33,6 +33,11 @@ You can customize the behavior of the extension by modifying the following files
 
 - `content.js`: Modify the logic to observe changes in the DOM and trigger volume control.
 - `background.js`: Adjust the volume control logic and delay time.
+
+## Supported Sites
+
+1. [www.jiocinema.com](www.jiocinema.com)
+2. [www.hotstar.com](www.hotstar.com)
 
 ## Feedback
 
