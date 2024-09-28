@@ -24,10 +24,6 @@ if (isHotstar || isJioCinema || isYoutube) {
             }
 
             // for Youtube
-
-            if (isYoutube ) {
-              console.log('MyExtension: added node-classlist', node.classList);
-            }
             if (isYoutube && node.nodeType === Node.ELEMENT_NODE && node.classList.contains('ytp-ad-player-overlay-layout')) {
               chrome.runtime.sendMessage({ action: 'muteTabVolume' }, (response) => {
                 console.log('Youtube Tab muted!');
@@ -50,10 +46,6 @@ if (isHotstar || isJioCinema || isYoutube) {
             // for Youtube
             if (isYoutube && node.nodeType === Node.ELEMENT_NODE && node.classList.contains('ytp-ad-player-overlay-layout')) {
               setTimeout(() => {chrome.runtime.sendMessage({action: 'restoreTabVolume'}, (response) => console.log('Youtube Tab unmuted!'))}, 0);
-            }
-
-            if (isYoutube ) {
-              console.log('MyExtension: remove node-classlist', node.classList);
             }
 
           });
