@@ -40,6 +40,7 @@ You can customize the behavior of the extension by modifying the following files
 
 1. [www.jiocinema.com](www.jiocinema.com)
 2. [www.hotstar.com](www.hotstar.com)
+3. [www.youtube.com](www.youtube.com) 
 
 ## Feedback
 
