@@ -4,6 +4,27 @@ const isHotstar = hostname.includes('hotstar.com');
 const isJioCinema = hostname.includes('jiocinema.com');
 const isYoutube = hostname.includes('youtube.com');
 
+let originalPlaybackRate = 1;
+const adPlaybackRate = 15; // 15x speed for ads
+
+function speedUpVideo() {
+  const video = document.querySelector('.html5-main-video');
+  if (video) {
+    originalPlaybackRate = video.playbackRate;
+    video.playbackRate = adPlaybackRate;
+    console.log(`Video speed increased to ${adPlaybackRate}x`);
+  }
+}
+
+function restoreVideoSpeed() {
+  const video = document.querySelector('.html5-main-video');
+  if (video) {
+    video.playbackRate = originalPlaybackRate;
+    console.log(`Video speed restored to ${originalPlaybackRate}x`);
+  }
+}
+
+
 if (isHotstar || isJioCinema || isYoutube) {
   const observer = new MutationObserver((mutationsList, observer) => {
       mutationsList.forEach((mutation) => {
@@ -27,6 +48,7 @@ if (isHotstar || isJioCinema || isYoutube) {
             if (isYoutube && node.nodeType === Node.ELEMENT_NODE && node.classList.contains('ytp-ad-player-overlay-layout')) {
               chrome.runtime.sendMessage({ action: 'muteTabVolume' }, (response) => {
                 console.log('Youtube Tab muted!');
+                speedUpVideo();
               });
             }
           });
@@ -44,7 +66,11 @@ if (isHotstar || isJioCinema || isYoutube) {
 
              // for Youtube
             if (isYoutube && node.nodeType === Node.ELEMENT_NODE && node.classList.contains('ytp-ad-player-overlay-layout')) {
-              setTimeout(() => {chrome.runtime.sendMessage({action: 'restoreTabVolume'}, (response) => console.log('Youtube Tab unmuted!'))}, 0);
+              setTimeout(() => {chrome.runtime.sendMessage({action: 'restoreTabVolume'}, (response) => {
+                  console.log('Youtube Tab unmuted!');
+                  restoreVideoSpeed();
+                });
+              }, 0);
             }
           });
         }
